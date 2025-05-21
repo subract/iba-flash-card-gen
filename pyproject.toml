@@ -1,0 +1,25 @@
+[project]
+name = "iba-fetch"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "subract",email = "self@subract.dev"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bs4 (>=0.0.2,<0.0.3)",
+]
+
+[tool.poetry]
+package-mode = false
+packages = [{include = "iba_fetch", from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+ipdb = "^0.13.13"
+ipython = "^9.2.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
