@@ -1,4 +1,5 @@
-# import urllib2
+import requests
+
 from dataclasses import dataclass, field
 from typing import List, Optional
 from bs4 import BeautifulSoup
@@ -21,14 +22,14 @@ class Cocktail:
 
 def main():
     page_number = 1
-    iba_url = f"https://iba-world.com/cocktails/all-cocktails/page/${page_number}/"
+    iba_url = f"https://iba-world.com/cocktails/all-cocktails/page/{page_number}/"
 
     # For development, load a local example page instead of fetching it every time
-    with open("example/page1.html") as page1:
-        soup = BeautifulSoup(page1, 'html.parser')
+    # with open("example/page1.html") as page1:
+    #     soup = BeautifulSoup(page1, 'html.parser')
 
-    # page = urllib2.urlopen(iba_url)
-    # soup = BeautifulSoup(page, 'html.parser')
+    page = requests.get(iba_url, allow_redirects=True).content
+    soup = BeautifulSoup(page, 'html.parser')
 
     print(soup.title.string)
 
@@ -54,17 +55,19 @@ def main():
 
 if __name__ == "__main__": main()
 
-    # <div class="cocktail cocktail-203">
-    #   <a href="https://iba-world.com/iba-cocktail/casino/">
-    #     <picture>
-    #       <img decoding="async" src="https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-casino-6694910882cd6.webp" alt=""/>
-    #     </picture>
-    #     <div class="cocktail-content">
-    #       <h2>Casino</h2>
-    #       <div class="content">
-    #         <div class="cocktail-category"><i class="fa-solid fa-tag fa-flip-horizontal  fa-fw"></i> The unforgettables</div>
-    #         <div class="cocktail-views"><i class="fa-regular fa-eye fa-fw"></i> 39.9K views</div>
-    #       </div>
-    #     </div>
-    #   </a>
-    # </div>
+# Reference cocktail element
+# 
+# <div class="cocktail cocktail-203">
+#   <a href="https://iba-world.com/iba-cocktail/casino/">
+#     <picture>
+#       <img decoding="async" src="https://iba-world.com/wp-content/uploads/2024/07/iba-cocktail-the-unforgettables-casino-6694910882cd6.webp" alt=""/>
+#     </picture>
+#     <div class="cocktail-content">
+#       <h2>Casino</h2>
+#       <div class="content">
+#         <div class="cocktail-category"><i class="fa-solid fa-tag fa-flip-horizontal  fa-fw"></i> The unforgettables</div>
+#         <div class="cocktail-views"><i class="fa-regular fa-eye fa-fw"></i> 39.9K views</div>
+#       </div>
+#     </div>
+#   </a>
+# </div>
