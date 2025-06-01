@@ -14,7 +14,7 @@ dependencies = [
 
 [tool.poetry]
 package-mode = false
-packages = [{include = "iba_fetch", from = "src"}]
+packages = [{include = "iba_fetch", from = "iba_fetch"}]
 
 
 [tool.poetry.group.dev.dependencies]
