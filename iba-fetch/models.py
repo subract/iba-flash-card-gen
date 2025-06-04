@@ -22,5 +22,18 @@ class Cocktail:
             return None
         return "- " + "\n- ".join(self.steps)
 
+    def get_card(self):
+        html = f"<b>{self.name}</b><br>{self.category};"
+
+        for ingredient in self.ingredients:
+            html += f"{ingredient}<br>"
+
+        html += "<hr>"
+
+        for id, step in enumerate(self.steps, start=1):
+            html += f"{id}. {step}<br>"
+
+        return html
+
     def __str__(self):
         return f"{self.name} ({self.category})\n{self.get_ingredients()}\nSteps:\n{self.get_steps()}\n"

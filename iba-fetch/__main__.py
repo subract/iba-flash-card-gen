@@ -1,9 +1,9 @@
-from doctest import debug
-from .iba import get_all_cocktails
-
 import os
 
-# from .models import Cocktail
+from doctest import debug
+
+from .iba import get_all_cocktails
+from .output import writeCocktails
 
 if __name__ == "__main__":
     env = os.getenv("ENV", "production").lower()
@@ -21,5 +21,8 @@ if __name__ == "__main__":
         sys.excepthook = ipython_excepthook
 
     cocktails = get_all_cocktails()
-    for cocktial in cocktails:
-        print(cocktial)
+    writeCocktails(cocktails, "cocktails.txt")
+
+    if env == "development":
+        for cocktial in cocktails:
+            print(cocktial)
